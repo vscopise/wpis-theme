@@ -33,7 +33,7 @@ add_action( 'wp_ajax_wpis_infinite_scroll', 'wpis_ajax_callback' );
 function wpis_ajax_callback() {
     $nonce = filter_input( INPUT_POST, 'nonce' );
     if( ! wp_verify_nonce( $nonce, 'wpis_nonce' ) ) {
-        die( 'Error' );
+        wp_die( 'Error' );
     } else {
         $page_number = filter_input( INPUT_POST, 'pageNumber' );
         query_posts(array(
