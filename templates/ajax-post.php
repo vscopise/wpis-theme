@@ -1,5 +1,4 @@
 <?php
-    //Debo introducir la variable global
     global $post;
     
     if ( ! defined( 'ABSPATH' ) ) {
