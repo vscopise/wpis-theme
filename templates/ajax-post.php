@@ -1,8 +1,9 @@
 <?php
+    global $post;
+    
     if ( ! defined( 'ABSPATH' ) ) {
         exit;
     }
-    global $post;
 ?>
 <article itemtype="https://schema.org/CreativeWork" itemscope="itemscope" id="post-<?php the_ID(); ?>" <?php post_class('post'); ?>>
     
