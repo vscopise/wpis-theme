@@ -32,23 +32,21 @@ add_action( 'wp_ajax_nopriv_wpis_infinite_scroll', 'wpis_ajax_callback' );
 add_action( 'wp_ajax_wpis_infinite_scroll', 'wpis_ajax_callback' );
 function wpis_ajax_callback() {
     $nonce = filter_input( INPUT_POST, 'nonce' );
-    if( ! wp_verify_nonce( $nonce, 'wpis_nonce' ) ) {
-        wp_die( 'Error' );
-    } else {
-        $page_number = filter_input( INPUT_POST, 'pageNumber' );
-        query_posts(array(
-            'paged' => $page_number
-        ));
-        ob_start();
-        while(have_posts()) : the_post();
-            include ( get_stylesheet_directory() . '/templates/ajax-post.php' );
-        endwhile;
-        $result = ob_get_clean();
-        $response = array(
-            'result' => $result
-        );
-        wp_send_json( $response );
-    } 
+    if( ! wp_verify_nonce( $nonce, 'wpis_nonce' ) ) { wp_die( 'Error' ); }
+    
+    $page_number = filter_input( INPUT_POST, 'pageNumber' );
+    query_posts(array(
+        'paged' => $page_number
+    ));
+    ob_start();
+    while(have_posts()) : the_post();
+        include ( get_stylesheet_directory() . '/templates/ajax-post.php' );
+    endwhile;
+    $result = ob_get_clean();
+    $response = array(
+        'result' => $result
+    );
+    wp_send_json( $response );
 }
 
 /*
