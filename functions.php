@@ -7,14 +7,14 @@ function wpis_enqueue() {
     global $wp_query;   
     if ( is_front_page() && is_home() ) {
         wp_enqueue_script( 
-            'main_script', 
+            'wpis_ajax_script', 
             get_stylesheet_directory_uri() . '/js/wpis-script.js', 
             array( 'jquery' ),
             filemtime( get_stylesheet_directory() . '/js/wpis-script.js' )
         );
         wp_enqueue_style( 'styles', get_stylesheet_directory_uri() . '/css/loader-styles.css' );
         wp_localize_script(
-            'main_script', 
+            'wpis_ajax_script', 
             'ajaxObj', 
             array(
                 'AjaxUrl' => admin_url( 'admin-ajax.php' ),
